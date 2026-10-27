@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Patrick+Hand&family=UnifrakturCook:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
     <title>El chat de Bill</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -18,32 +18,68 @@
         </filter>
     </svg>
 
-    <div class="chat-container">
-        <header class="chat-header">
-            <button class="btn-icono" id="btn-volver" aria-label="Volver">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-            <img src="img/bill-icon.png" alt="bill-icon" class="icono-perfil">
-            <div class="texto-header">
-                <h1>Bill Cipher?</h1>
-                <p>Siempre en línea</p>
-            </div>
-        </header>
+    <!-- Pagina General -->
+    <main id="app"></main>
 
-        <main class="chat-messages" id="chatMessages">
-            <div class="message message--bot">
-                <p>¡Aquí estamos al fin! He esperado una eternidad para conocerte. Tu vida estará dividida para siempre antes y después de conocerme. BIENVENIDO AL DESPUÉS.</p>
-            </div>
-            <div class="message message--user">
-                <p>Bill, eres un ser todopoderoso ¿Por qué estás en un chat?</p>
-            </div>
-        </main>
+    <!-- Home -->
+    <template id="vista-home">
+        <section class="vista-oscura">
+            <img src="/img/bill-main.png" alt="Bill_Main" class="bill-main">
+            <h1>El chat de<br>Bill</h1>
+            <a href="/chat" data-link>Hacer un trato</a>
+            <a href="/universos" data-link>Cruza a otro universo</a>
+            <a href="/about" data-link>El trato</a>
+        </section>
+    </template>
 
-        <form class="chat-input-area" id="chatForm">
-            <input type="text" id="chatInput" placeholder="Sin misterio, solo escribe..." autocomplete="off" aria-label="Mensaje">
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+    <!-- Universos -->
+    <template id="vista-universos">
+        <section class="vista-oscura">
+            <h1>Universos</h1>
+            <a href="/home" data-link>Volver con Bill</a>
+        </section>
+    </template>
 
+    <template id="vista-about">
+        <section class="vista-oscura">
+            <h1>El trato</h1>
+            <a href="/home" data-link>Volver con Bill</a>
+        </section>
+    </template>
+
+    <!-- Chat Bill -->
+    <template id="vista-chat">
+        <div class="chat-container">
+            <header class="chat-header">
+                <a href="/home" data-link class="btn-icono" id="btn-volver" aria-label="Volver">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+                </a>
+                <img src="/img/bill-icon.png" alt="bill-icon" class="icono-perfil">
+                <div class="texto-header">
+                    <h1>Bill Cipher?</h1>
+                    <p>Siempre en línea</p>
+                </div>
+            </header>
+    
+            <main class="chat-messages" id="chatMessages">
+                <div class="message message--bot">
+                    <p>¡Aquí estamos al fin! He esperado una eternidad para conocerte. Tu vida estará dividida para siempre antes y después de conocerme. BIENVENIDO AL DESPUÉS.</p>
+                </div>
+                <div class="message message--user">
+                    <p>Bill, eres un ser todopoderoso ¿Por qué estás en un chat?</p>
+                </div>
+            </main>
+    
+            <form class="chat-input-area" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Sin misterio, solo escribe..." autocomplete="off" aria-label="Mensaje">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    
+        <p class="garabato garabato--izq" aria-hidden="true">¿Realidad?<br>¿Qué realidad?</p>
+        <p class="garabato garabato--der" aria-hidden="true">Todo es posible,<br>yo soy TODO</p>
+    </template>
+
+    <script type="module" src="/app.js"></script>
 </body>
 </html>

@@ -44,10 +44,13 @@ body {
     align-items: center;
     color: var(--cafe);
     padding: 15px 10px;
-    border-bottom: solid 2px;
+    border-bottom: solid 2px var(--cafe);
 }
 
 .btn-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     width: 50px;
     background: none;
@@ -174,4 +177,59 @@ body {
     border: 0;
     border-radius: 20px;
     cursor: pointer;
+}
+
+/* Garabatos Ocultos */
+.garabato {
+    display: none;
+    font-family: var(--fontTitulo);
+    color: rgba(65, 31, 0, 0.5);
+}
+
+.garabato--der {
+    font-size: 30px;
+    transform: rotate(-2deg);
+}
+.garabato--izq {
+    font-size: 34px;
+    transform: rotate(3deg);
+}
+
+
+/* Tamaño Tablet */
+@media (min-width: 768px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chat-container {
+        width: 100%;
+        max-width:800px;
+        height: calc(100dvh - 48px);
+        border: 3px solid var(--cafe);
+        border-radius: 16px;
+    }
+}
+
+
+/* Tamaño Desktop */
+@media (min-width: 1200px) {
+
+    .garabato {
+        display: block;
+        position: fixed;
+    }
+
+    .garabato--der {
+        right: 3%;
+        top: 25%;
+    }
+    .garabato--izq {
+        left: 3%;
+        top: 40%;
+    }
+
 }
