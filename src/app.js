@@ -1,3 +1,5 @@
+import { iniciarChat } from './chat.js';
+
 const app = document.getElementById('app');
 
 // Le nombra a cada ID su enlace 
@@ -9,6 +11,7 @@ const rutas =  {
 };
 
 // Rederizar las paginas solicitadas por su Enlace (ID)
+// Pinta los chat si la ruta el chat
 function render() {
     const ruta = rutas[location.pathname] ? location.pathname : '/home';
     const plantilla = document.getElementById(rutas[ruta]);
@@ -16,6 +19,8 @@ function render() {
     document.body.dataset.vista = ruta.slice(1);
     app.innerHTML = '';
     app.appendChild(plantilla.content.cloneNode(true));
+
+    if (ruta === '/chat') iniciarChat();
 }
 
 // Cambia la URL a su respectivo enlace y lo agrega al historial
