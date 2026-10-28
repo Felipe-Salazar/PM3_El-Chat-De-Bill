@@ -3,6 +3,9 @@
 }
 
 :root {
+    --rojo: #ad020e;
+    --rojo-claro: #f72424;
+    --hueso: #e8e0d0;
     --papel: #d9b97c;
     --borde-oscuro: rgba(70, 40, 10, 0.60);
     --cafe: #241809;
@@ -10,6 +13,8 @@
     --amarillo: #f5c518;
     --nota: #f2c94c;
     --texto-oscuro: #2b2112;
+    --fontGotica: 'UnifrakturCook', serif;
+    --fontMaquina: 'Special Elite', monospace;
     --fontChat: 'Patrick Hand', cursive;
     --fontTitulo: 'Caveat', cursive;
 }
@@ -19,12 +24,22 @@ body {
     font-family: var(--fontChat);
     font-size: 1.2rem;
     min-height: 100dvh;
+    background: #000;
+    background-image: radial-gradient(
+        ellipse at center,
+        transparent 70%,
+        var(--rojo) 200%
+    );
+}
+
+body[data-vista="chat"] {
     background-color: var(--papel);
     background-image: radial-gradient(
         ellipse at center,
         transparent 30%,
         var(--borde-oscuro) 100%
     );
+    color: var(--texto-oscuro);
 }
 
 .filtros {
@@ -64,6 +79,11 @@ body {
     margin-left: 10px;
 }
 
+.btn-icono,
+.icono-perfil {
+    flex-shrink: 0;
+}
+
 .texto-header {
     display: flex;
     flex-direction: column;
@@ -86,6 +106,7 @@ body {
 /* Burbujas de chat */
 .chat-messages {
     flex: 1;
+    overflow-x: hidden;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -116,6 +137,9 @@ body {
 }
 
 .message--user::before {
+    left: auto;
+    right: 14px;
+    transform: rotate(12deg);
     content: "";
     position: absolute;
     top: -8px;
@@ -147,6 +171,7 @@ body {
     margin-left: 6px;
 }
 
+
 /* Caja de texto */
 .chat-input-area {
     display: flex;
@@ -156,6 +181,7 @@ body {
 
 .chat-input-area input {
     flex: 1;
+    min-width: 0;
     font: inherit;
     color: inherit;
     padding: 10px 14px;
@@ -199,7 +225,8 @@ body {
 /* Tamaño Tablet */
 @media (min-width: 768px) {
 
-    body {
+    body[data-vista="chat"] #app {
+        min-height: 100dvh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -215,8 +242,38 @@ body {
 }
 
 
+
+.vista-oscura {
+    min-height: 100dvh;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+}
+
+.vista-oscura h1 {
+    font-family: var(--fontGotica);
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--rojo);
+    margin: 0;
+}
+
+.vista-oscura a {
+    font-family: var(--fontMaquina);
+    color: var(--rojo-claro);
+}
+
+.bill-main {
+    width: min(60vw, 220px);
+}
+
+
 /* Tamaño Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
 
     .garabato {
         display: block;
