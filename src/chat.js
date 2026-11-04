@@ -2,37 +2,34 @@ const saludo = '¡Aquí estamos al fin! He esperado una eternidad para conocerte
 
 const historial = [];
 
-
-//  Simulacion "escribiendo..." antes de respuesta
-const respuestas_falsas = [
-    'Mmm, qué pregunta tan aburrida. Intenta otra.',
-    'Te escucho, humano. Siempre te escucho.',
-    'Eso tiene un precio. Todo lo tiene.',
-    'Cuéntame más. Los secretos me abren el apetito.',
-];
-
-// Temporizador que simula demaro de la respuesta
-function esperar(ms) {
-    return new Promise(function(resolve) {
-        setTimeout(resolve, ms);
-    });
-}
-
 async function obtenerRespuesta(mensajes) {
-    await esperar(2000);
+    const res = await fetch('/api/functions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensajes }),
+    });
 
-    const ultimo = mensajes[mensajes.length - 1].text;
-    if (ultimo.toLowerCase() === 'error') {
-        throw new Error('Error simulado');
+    const data = await res.json().catch(function() { return {}; });
+
+    if (!res.ok) {
+        const error = new Error(data.error || 'Error de red');
+        error.status = res.status;
+        throw error;
     }
 
-    return respuestas_falsas[mensajes.length % respuestas_falsas.length];
+    return data.respuesta;
 }
 
 
 // Scrollea hasta el ultimo mensaje
 function bajarAlFinal(lista) {
     lista.scrollTo({ top: lista.scrollHeight, behavior: 'smooth' });
+}
+
+// Ajustar campo de texto para que se vea todo el contenido
+function ajustarAltura(campo) {
+    campo.style.height = 'auto';
+    campo.style.height = (campo.scrollHeight + campo.offsetHeight - campo.clientHeight) + 'px';
 }
 
 // Genera una burbuja dependiendo el rol de quien lo envia e ingresa el texto
@@ -57,13 +54,28 @@ function crearIndicador() {
         '<span class="typing-puntos" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span>';
     return burbuja;
 }
-// Genera un mensaje de erro si falla
-function burbujaError() {
-    const burbuja = crearBurbuja('model', 'Algo horrible pasó y no quieres saber que es jaja. Intenta de nuevo.');
+
+// Genera un mensaje de error si falla
+function burbujaError(texto) {
+    const burbuja = crearBurbuja('model', texto);
     burbuja.classList.add('message--error');
     
     return burbuja;
 }
+
+function mensajeDeError(error) {
+    if (error.status === 429) {
+        return 'Bill se está hartando de ti. Espera un momento y vuelve a intentarlo.';
+    }
+    if (error.status === 400) {
+        return 'Esta conversación ya es demasiado larga. Recarga la página para empezar de nuevo.';
+    }
+    if (error.status >= 500) {
+        return 'Algo se rompió en el universo. Intenta de nuevo.';
+    }
+    return 'No pude contactar a Bill. Revisa tu conexión.';
+}
+
 
 // Genera el saludo y tambien el historial, solo se borra con F5
 export function iniciarChat() {
@@ -92,6 +104,7 @@ export function iniciarChat() {
         historial.push({ role: 'user', text: texto });
         lista.appendChild(crearBurbuja('user', texto));
         input.value = '';
+        ajustarAltura(input);
 
         esperando = true;
         boton.disabled = true;
@@ -105,12 +118,25 @@ export function iniciarChat() {
             historial.push({ role: 'model', text: respuesta});
             indicador.replaceWith(crearBurbuja('model', respuesta));
         } catch (error) {
-            indicador.replaceWith(burbujaError());
+            indicador.replaceWith(burbujaError(mensajeDeError(error)));
         } finally {
             esperando = false;
             boton.disabled = false;
             input.focus();
             bajarAlFinal(lista);
+        }
+    });
+
+    input.addEventListener('input', function() {
+        ajustarAltura(input);
+        bajarAlFinal(lista);
+    });
+
+    input.addEventListener('keydown', function(event) {
+        const enterEnvia = event.key === 'Enter' && !event.shiftKey && !event.isComposing;
+        if (enterEnvia && matchMedia('(pointer: fine)').matches) {
+            event.preventDefault();
+            form.requestSubmit();
         }
     });
 }
