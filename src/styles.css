@@ -76,6 +76,7 @@ body[data-vista="chat"] {
 
 .icono-perfil {
     width: 60px;
+    height: auto;
     margin-left: 10px;
 }
 
@@ -301,6 +302,7 @@ body[data-vista="chat"] {
 
 .bill-main {
     width: min(60vw, 250px);
+    height: auto;
     margin: -20px 0 -26px;
 }
 

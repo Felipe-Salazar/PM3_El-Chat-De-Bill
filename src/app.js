@@ -10,6 +10,14 @@ const rutas =  {
     '/universos': 'vista-universos',
 };
 
+// Cambia el título según la ruta
+const titulos =  {
+    '/home': 'El chat de Bill',
+    '/chat': 'Chat con Bill',
+    '/about': 'El trato · El chat de Bill',
+    '/universos': 'Universos · El chat de Bill',
+};
+
 // Rederizar las paginas solicitadas por su Enlace (ID)
 // Pinta los chat si la ruta el chat
 function render() {
@@ -17,6 +25,7 @@ function render() {
     const plantilla = document.getElementById(rutas[ruta]);
 
     document.body.dataset.vista = ruta.slice(1);
+    document.title = titulos[ruta];
     app.innerHTML = '';
     app.appendChild(plantilla.content.cloneNode(true));
 
