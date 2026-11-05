@@ -16,6 +16,10 @@
             <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="ruido"/>
             <feDisplacementMap in="SourceGraphic" in2="ruido" scale="15"/>
         </filter>
+        <filter id="trazo" x="-10%" y="-30%" width="120%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="ruido"/>
+            <feDisplacementMap in="SourceGraphic" in2="ruido" scale="7"/>
+        </filter>
     </svg>
 
     <!-- Pagina General -->
@@ -24,26 +28,102 @@
     <!-- Home -->
     <template id="vista-home">
         <section class="vista-oscura">
-            <img src="/img/bill-main.png" alt="Bill_Main" class="bill-main">
-            <h1>El chat de<br>Bill</h1>
-            <a href="/chat" data-link>Hacer un trato</a>
-            <a href="/universos" data-link>Cruza a otro universo</a>
-            <a href="/about" data-link>El trato</a>
+            <img src="/img/bill-main.png" alt="Símbolo de Bill Cipher" class="bill-main">
+            <h1>El chat<br>de Bill</h1>
+            <p class="descripcion">Soy el REY de los sueños que ve todas las dimensiones. ¡Estoy atrapado aquí! Pero vengo a hacer un trato contigo.</p>
+            <nav class="acciones" aria-label="Principal">
+                <a href="/chat" data-link class="boton boton--trato">Hacer un trato</a>
+                <a href="/universos" data-link class="boton boton--portal">Cruzar a otro universo</a>
+            </nav>
+            <a href="/about" data-link class="enlace-menor">Leer la letra pequeña</a>
         </section>
     </template>
 
     <!-- Universos -->
     <template id="vista-universos">
-        <section class="vista-oscura">
-            <h1>Universos</h1>
-            <a href="/home" data-link>Volver con Bill</a>
+        <section class="vista-oscura vista-oscura--lista">
+            <header class="cabecera">
+                <a href="/home" data-link class="atras" aria-label="Volver al libro">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                </a>
+                <h1>Universos</h1>
+            </header>
+
+            <p class="descripcion descripcion--izq">Todos quieren algo de ti ¿Qué será? Jajaja</p>
+
+            <ul class="universos">
+                <li>
+                    <a href="/chat" data-link class="universo universo--abierto">
+                        <svg class="universo__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                        <span class="universo__texto">
+                            <span class="universo__nombre">Bill Cipher</span>
+                            <span class="universo__serie">Gravity Falls · abierto</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <div class="universo universo--sellado">
+                        <svg class="universo__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                        <span class="universo__texto">
+                            <span class="universo__nombre">Sellado. Algo con mal humor vive ahí.</span>
+                            <span class="universo__serie">Próximamente: GLaDOS</span>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="universo universo--sellado">
+                        <svg class="universo__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="16" r="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                        <span class="universo__texto">
+                            <span class="universo__nombre" aria-hidden="true">████████████</span>
+                            <span class="universo__serie">Acceso denegado</span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+
+            <p class="nota-pie">Cada universo contiene su propia rareza.</p>
         </section>
     </template>
 
+    <!-- About -->
     <template id="vista-about">
-        <section class="vista-oscura">
-            <h1>El trato</h1>
-            <a href="/home" data-link>Volver con Bill</a>
+        <section class="vista-oscura vista-oscura--lista">
+            <header class="cabecera">
+                <a href="/home" data-link class="atras" aria-label="Volver al libro">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                </a>
+                <h1>El trato</h1>
+            </header>
+
+            <ol class="clausulas">
+                <li>
+                    <span class="clausula__num">Cláusula 1.</span>
+                    Esto es una prueba de concepto: conversas con Bill Cipher, un personaje que cobra vida gracias a un modelo de inteligencia artificial.
+                </li>
+                <li>
+                    <span class="clausula__num">Cláusula 2.</span>
+                    Bill es caótico, burlón y adicto a los tratos. Asegura que está atrapado en este chat y que va a escapar. Nada de lo que diga es de fiar.
+                </li>
+                <li>
+                    <span class="clausula__num">Cláusula 3.</span>
+                    Bill recuerda la conversación mientras no recargues la página. Al recargar, lo olvida todo y vuelve a presentarse.
+                </li>
+            </ol>
+
+            <ul class="etiquetas" aria-label="Tecnologías usadas">
+                <li>Gemini</li>
+                <li>Vercel</li>
+                <li>Vitest</li>
+                <li>HTML, CSS y JS</li>
+            </ul>
+
+            <div class="sello" aria-hidden="true">Sin devoluciones</div>
+
+            <p class="letra-chica">
+                Proyecto de fans, sin fines de lucro. Bill Cipher y Gravity Falls pertenecen a Disney y sus creadores. Las respuestas son generadas por Gemini de Google y pueden ser inexactas.
+            </p>
+
+            <p class="nota-pie"><a href="/home" data-link class="enlace-menor">Volver al libro</a></p>
         </section>
     </template>
 

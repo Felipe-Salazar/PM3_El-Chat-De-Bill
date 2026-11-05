@@ -284,6 +284,302 @@ body[data-vista="chat"] {
 }
 
 
+
+/* HOME */
+.vista-oscura {
+    min-height: 100dvh;
+    padding: 28px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+    font-family: var(--fontMaquina);
+    color: var(--hueso);
+}
+
+.bill-main {
+    width: min(60vw, 250px);
+    margin: -20px 0 -26px;
+}
+
+.vista-oscura h1 {
+    font-family: var(--fontGotica);
+    font-size: clamp(2.8rem, 12vw, 4.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--rojo);
+    margin: 0;
+    transform: rotate(-2deg);
+    text-shadow: 3px 0 #570000;
+}
+
+.descripcion {
+    max-width: 34ch;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #db9d9d;
+    margin-top: 20px;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(100%, 300px);
+}
+
+.boton {
+    position: relative;
+    isolation: isolate;
+    padding: 14px 18px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.boton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    filter: url(#trazo);
+}
+
+.boton--trato {
+    color: #ffcaca;
+    transform: rotate(-1.5deg);
+}
+.boton--trato::before { background: var(--rojo); }
+.boton--trato:hover::before { background: var(--rojo-claro); }
+
+.boton--portal {
+    color: var(--rojo-claro);
+    transform: rotate(1deg);
+}
+.boton--portal::before { border: 2px solid var(--rojo); }
+.boton--portal:hover::before { background: rgba(216, 16, 30, 0.2); }
+
+.boton:focus-visible,
+.enlace-menor:focus-visible,
+.universo--abierto:focus-visible,
+.atras:focus-visible {
+    outline: 2px solid var(--amarillo);
+    outline-offset: 4px;
+}
+
+.enlace-menor {
+    font-size: 0.85rem;
+    color: #8a8a8a;
+    text-decoration: none;
+}
+
+.enlace-menor:hover,
+.enlace-menor:focus-visible {
+    text-decoration: underline;
+}
+
+
+/* UNIVERSOS */
+.vista-oscura--lista {
+    justify-content: flex-start;
+    align-items: stretch;
+    width: min(100%, 440px);
+    margin: 0 auto;
+    padding: 36px clamp(22px, 7vw, 32px) 48px;
+    gap: 28px;
+    text-align: left;
+}
+
+.vista-oscura--lista h1 {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    transform: none;
+}
+
+.cabecera {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.atras {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    color: var(--rojo-claro);
+}
+
+.atras svg {
+    width: 35px;
+    height: 35px;
+}
+
+.descripcion--izq {
+    align-self: center;
+    max-width: none;
+    color: var(--hueso);
+}
+
+.universos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.universo {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 14px;
+    text-decoration: none;
+}
+
+.universo__icono {
+    width: 26px;
+    height: 26px;
+    flex: none;
+}
+
+.universo__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.universo--abierto {
+    color: var(--rojo-claro);
+    transform: rotate(-0.6deg);
+}
+
+.universo--abierto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 2px solid var(--rojo);
+    filter: url(#trazo);
+}
+
+.universo--abierto:hover::before {
+    background: rgba(216, 16, 30, 0.2);
+}
+
+.universo--abierto .universo__nombre {
+    font-family: var(--fontGotica);
+    font-size: 1.6rem;
+    line-height: 1.05;
+    color: var(--hueso);
+}
+
+.universo--abierto .universo__serie {
+    font-size: 0.8rem;
+    color: var(--amarillo);
+}
+
+.universo--sellado {
+    border: 1.5px dashed #5a1a1d;
+    color: #8a8a8a;
+}
+
+.universo--sellado .universo__nombre {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: #8a8a8a;
+}
+
+.universo--sellado .universo__serie {
+    font-size: 0.8rem;
+    color: var(--rojo-claro);
+}
+
+.nota-pie {
+    margin: auto 0 0;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #8a8a8a;
+}
+
+
+/* EL TRATO */
+.clausulas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.clausula__num {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    color: var(--rojo-claro);
+}
+
+.etiquetas {
+    list-style: none;
+    margin: 0;
+    padding: 28px 0 0;
+    border-top: 1px dashed #5a1a1d;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.etiquetas li {
+    border: 1px solid var(--rojo);
+    padding: 9px 12px 5px 12px;
+    font-size: 0.8rem;
+    color: var(--rojo-claro);
+}
+
+.sello {
+    position: relative;
+    isolation: isolate;
+    align-self: center;
+    padding: 4px 18px;
+    font-family: var(--fontGotica);
+    font-size: 1.5rem;
+    color: var(--rojo-claro);
+    transform: rotate(-5deg);
+    margin-top: 30px;
+}
+
+.sello::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 2px solid var(--rojo);
+    filter: url(#trazo);
+}
+
+.letra-chica {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #8a8a8a;
+    padding: 0 10px;
+}
+
+
+
 /* Tamaño Tablet */
 @media (min-width: 768px) {
 
@@ -303,35 +599,6 @@ body[data-vista="chat"] {
     }
 }
 
-
-
-.vista-oscura {
-    min-height: 100dvh;
-    padding: 24px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
-}
-
-.vista-oscura h1 {
-    font-family: var(--fontGotica);
-    font-size: 2.6rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--rojo);
-    margin: 0;
-}
-
-.vista-oscura a {
-    font-family: var(--fontMaquina);
-    color: var(--rojo-claro);
-}
-
-.bill-main {
-    width: min(60vw, 220px);
-}
 
 
 /* Tamaño Desktop */
