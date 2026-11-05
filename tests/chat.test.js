@@ -43,6 +43,7 @@ async function esperarFin() {
 }
 
 beforeEach(async function() {
+    localStorage.clear();
     vi.resetModules();
     vi.stubGlobal('fetch', vi.fn());
     Element.prototype.scrollTo = vi.fn();
@@ -74,7 +75,7 @@ describe('chat', function() {
 
         const mensajes = lista.querySelectorAll('.message--user');
         expect(mensajes).toHaveLength(1);
-        expect(mensajes[0].textContent).toBe('Hola, Bill');
+        expect(mensajes[0].querySelector('p').textContent).toBe('Hola, Bill');
         expect(input.value).toBe('');
     });
 
@@ -106,7 +107,7 @@ describe('chat', function() {
         await esperarFin();
 
         const bots = lista.querySelectorAll('.message--bot');
-        expect(bots[bots.length - 1].textContent).toBe('Qué aburrido eres.');
+        expect(bots[bots.length - 1].querySelector('p').textContent).toBe('Qué aburrido eres.');
     });
 
     it('no envía mensajes vacíos', function() {
@@ -204,7 +205,7 @@ describe('chat', function() {
         iniciarChat();
 
         const textos = Array.from(lista.querySelectorAll('.message')).map(function(m) {
-            return m.textContent;
+            return m.querySelector('p').textContent;
         });
         expect(textos).toHaveLength(3);
         expect(textos[1]).toBe('Hola');

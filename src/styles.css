@@ -104,6 +104,12 @@ body[data-vista="chat"] {
     opacity: 0.7;
 }
 
+.chat-guardado {
+    margin-left: 2px;
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
 /* Burbujas de chat */
 .chat-messages {
     flex: 1;
@@ -282,6 +288,43 @@ body[data-vista="chat"] {
 .garabato--izq {
     font-size: 34px;
     transform: rotate(3deg);
+}
+
+/* Botón Borrar */
+.btn-borrar {
+    font-weight: 500;
+    margin-left: auto;
+    font-size: 2.8rem;
+}
+
+.message__pie {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+    padding-right: 5px;
+    font-size: 0.7em;
+    opacity: 0.8;
+}
+
+.message__pie time {
+    font-family: var(--fontMaquina);
+}
+
+.message__copiar {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    padding: 0 8px;
+    cursor: pointer;
+}
+
+.message__copiar:focus-visible {
+    outline: 2px solid var(--amarillo);
+    outline-offset: 2px;
 }
 
 
